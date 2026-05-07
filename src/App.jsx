@@ -1,122 +1,182 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState, useEffect } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+
+export default function App() {
+
+  const [player1Life, setPlayer1Life] = useState(40);
+  const [player2Life, setPlayer2Life] = useState(40);
+  const [player3Life, setPlayer3Life] = useState(40);
+  const [player4Life, setPlayer4Life] = useState(40);
+
+  const [seconds, setSeconds] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    let interval = null;
+
+    if (isRunning) {
+      interval = setInterval(() => {
+        setSeconds(prev => prev + 1);
+      }, 1000); 
+    }
+
+    return () => clearInterval(interval);
+
+  }, [isRunning]);
+
+  const formatTime = (totalSeconds) => {
+
+    const hours = String(
+      Math.floor(totalSeconds / 3600)
+    ).padStart(2, "0");
+
+    const minutes = String(
+      Math.floor((totalSeconds % 3600) / 60)
+    ).padStart(2, "0");
+
+    const secs = String(
+      totalSeconds % 60
+    ).padStart(2, "0");
+
+    return `${hours}:${minutes}:${secs}`;
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+    <div className="relative h-svh w-screend">
+      <div className="grid grid-cols-2 grid-rows-2 overflow-hidden">
+
+        {/* Timer */}
+        <div className="flex itesm-center gap-4 rounded-2xl bg-black/80 px-6 py-4 text-white shadow-xl backdrop-blur">
+
+        {/* Rese */}
         <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={() => {
+            setSeconds(0);
+            setIsRunning(false);
+          }}
+          className="text-2xl opacity-70 active:scale-95"
         >
-          Count is {count}
+          ⏹
         </button>
-      </section>
 
-      <div className="ticks"></div>
+        {/* Timer */}
+        <h1 className="text-3xl font-bold tracking-wider">
+          {formatTime(seconds)}
+        </h1>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+        {/* Play/Pause */}
+        <button
+          onClick={() => setIsRunning(!isRunning)}
+          className="text-2xl opacity-70 active:scale-95"
+        >
+          {isRunning ? "⏸" : "▶"}
+        </button>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        {/* Player 1 */}
+        <div className="relative bg-blue-600 flex items-center justify-center border overflow-hidden select-none touch-manipulation rotate-180">
+
+          {/* Minus Side */}
+          <button 
+            onClick={() => setPlayer1Life(player1Life - 1)}
+            className="absolute left-0 top-0 h-full w-1/2">
+            <span className="absolute left-6 top-1/2 -translate-y-1/2 text-4xl opacity-30">
+              -
+            </span>
+          </button>
+
+          {/* Plus Side */}
+          <button 
+            onClick={() => setPlayer1Life(player1Life + 1)}
+            className="absolute right-0 top-0 h-full w-1/2">
+            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-4xl opacity-30">
+              +
+            </span>
+          </button>
+
+          <h1 className="text-[clamp(3rem,10vw,8rem)]">
+            {player1Life}
+          </h1>
+        </div>
+
+        {/* Player 2 */}
+        <div className="relative bg-green-600 flex items-center justify-center border overflow-hidden select-none touch-manipulation rotate-180">
+
+          {/* Minus Side */}
+          <button 
+            onClick={() => setPlayer2Life(player2Life - 1)}
+            className="absolute left-0 top-0 h-full w-1/2">
+            <span className="absolute left-6 top-1/2 -translate-y-1/2 text-7xl opacity-30">
+              -
+            </span>
+          </button>
+
+          {/* Plus Side */}
+          <button
+            onClick={() => setPlayer2Life(player2Life + 1)}
+            className="absolute right-0 top-0 h-full w-1/2">
+            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-4xl opacity-30">
+              +
+            </span>
+          </button>
+          <h1 className="text-[clamp(3rem,10vw,8rem)]">
+            {player2Life}
+          </h1>
+        </div>
+
+        {/* Player 3 */}
+        <div className="relative bg-red-600 flex items-center justify-center border overflow-hidden select-none touch-manipulation">
+
+          {/* Minus Side */}
+          <button 
+            onClick={() => setPlayer3Life(player3Life - 1)}
+            className="absolute left-0 top-0 h-full w-1/2">
+            <span className="absolute left-6 top-1/2 -translate-y-1/2 text-4xl opacity-30">
+              -
+            </span>
+          </button>
+
+          {/* Plus Side */}
+          <button 
+            onClick={() => setPlayer3Life(player3Life + 1)}
+            className="absolute right-0 top-0 h-full w-1/2">
+            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-4xl opacity-30">
+              +
+            </span>
+          </button>
+
+          <h1 className="text-[clamp(3rem,10vw,8rem)]">
+            {player3Life}
+          </h1>
+        </div>
+
+        {/* Player 4 */}
+        <div className="relative bg-purple-600 flex items-center justify-center border overflow-hidden select-none touch-manipulation">
+
+          {/* Minus Side */}
+          <button 
+            onClick={() => setPlayer4Life(player4Life - 1)}
+            className="absolute left-0 top-0 h-full w-1/2">
+            <span className="absolute left-6 top-1/2 -translate-y-1/2 text-4xl opacity-30">
+              -
+            </span>
+          </button>
+
+          {/* Plus Side */}
+          <button 
+            onClick={() => setPlayer4Life(player4Life + 1)}
+            className="absolute right-0 top-0 h-full w-1/2">
+            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-4xl opacity-30">
+              +
+            </span>
+          </button>
+
+          <h1 className="text-[clamp(3rem,10vw,8rem)]">
+            {player4Life}
+          </h1>
+        </div>
+
+      </div>
+    </div>
+  );
 }
-
-export default App
