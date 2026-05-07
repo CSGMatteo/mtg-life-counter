@@ -72,7 +72,7 @@ export default function App() {
       <div className="grid grid-cols-2 grid-rows-2 h-full w-full overflow-hidden">
 
         {/* Player 1 */}
-        <div className="relative bg-blue-600 flex items-center justify-center border overflow-hidden select-none touch-manipulation rotate-180">
+        <div className="relative bg-blue-700 flex items-center justify-center border overflow-hidden select-none touch-manipulation rotate-180">
 
           {/* Minus Side */}
           <button 
@@ -92,7 +92,7 @@ export default function App() {
             </span>
           </button>
 
-          <h1 className="text-[clamp(3rem,10vw,8rem)]">
+          <h1 className="text-[clamp(4rem,14vw,12rem)] font-bold">
             {player1Life}
           </h1>
 
@@ -104,7 +104,7 @@ export default function App() {
         </div>
 
         {/* Player 2 */}
-        <div className="relative bg-green-600 flex items-center justify-center border overflow-hidden select-none touch-manipulation rotate-180">
+        <div className="relative bg-emerald-700 flex items-center justify-center border overflow-hidden select-none touch-manipulation rotate-180">
 
           {/* Minus Side */}
           <button 
@@ -123,7 +123,7 @@ export default function App() {
               +
             </span>
           </button>
-          <h1 className="text-[clamp(3rem,10vw,8rem)]">
+          <h1 className="text-[clamp(4rem,14vw,12rem)] font-bold">
             {player2Life}
           </h1>
 
@@ -135,7 +135,7 @@ export default function App() {
         </div>
 
         {/* Player 3 */}
-        <div className="relative bg-red-600 flex items-center justify-center border overflow-hidden select-none touch-manipulation">
+        <div className="relative bg-rose-700 flex items-center justify-center border overflow-hidden select-none touch-manipulation">
 
           {/* Minus Side */}
           <button 
@@ -155,7 +155,7 @@ export default function App() {
             </span>
           </button>
 
-          <h1 className="text-[clamp(3rem,10vw,8rem)]">
+          <h1 className="text-[clamp(4rem,14vw,12rem)] font-bold">
             {player3Life}
           </h1>
 
@@ -167,7 +167,7 @@ export default function App() {
         </div>
 
         {/* Player 4 */}
-        <div className="relative bg-purple-600 flex items-center justify-center border overflow-hidden select-none touch-manipulation">
+        <div className="relative bg-violet-700 flex items-center justify-center border overflow-hidden select-none touch-manipulation">
 
           {/* Minus Side */}
           <button 
@@ -187,7 +187,7 @@ export default function App() {
             </span>
           </button>
 
-          <h1 className="text-[clamp(3rem,10vw,8rem)]">
+          <h1 className="text-[clamp(4rem,14vw,12rem)] font-bold">
             {player4Life}
           </h1>
 
