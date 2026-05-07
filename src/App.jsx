@@ -42,36 +42,8 @@ export default function App() {
   };
 
   return (
-    <div className="relative h-svh w-screend">
-      <div className="grid grid-cols-2 grid-rows-2 overflow-hidden">
-
-        {/* Timer */}
-        <div className="flex itesm-center gap-4 rounded-2xl bg-black/80 px-6 py-4 text-white shadow-xl backdrop-blur">
-
-        {/* Rese */}
-        <button
-          onClick={() => {
-            setSeconds(0);
-            setIsRunning(false);
-          }}
-          className="text-2xl opacity-70 active:scale-95"
-        >
-          ⏹
-        </button>
-
-        {/* Timer */}
-        <h1 className="text-3xl font-bold tracking-wider">
-          {formatTime(seconds)}
-        </h1>
-
-        {/* Play/Pause */}
-        <button
-          onClick={() => setIsRunning(!isRunning)}
-          className="text-2xl opacity-70 active:scale-95"
-        >
-          {isRunning ? "⏸" : "▶"}
-        </button>
-        </div>
+    <div className="relative h-svh w-screen">
+      <div className="grid grid-cols-2 grid-rows-2 h-full w-full overflow-hidden">
 
         {/* Player 1 */}
         <div className="relative bg-blue-600 flex items-center justify-center border overflow-hidden select-none touch-manipulation rotate-180">
@@ -176,6 +148,36 @@ export default function App() {
           </h1>
         </div>
 
+      </div>
+
+      {/* Timer */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+        <div className="flex items-center gap-4 rounded-2xl bg-black/80 px-6 py-4 text-white shadow-xl backdrop-blur">
+
+        {/* Reset */}
+        <button
+          onClick={() => {
+            setSeconds(0);
+            setIsRunning(false);
+          }}
+          className="text-2xl opacity-70 active:scale-95"
+        >
+          ⏹
+        </button>
+
+        {/* Timer */}
+        <h1 className="text-3xl font-bold tracking-wider">
+          {formatTime(seconds)}
+        </h1>
+
+        {/* Play/Pause */}
+        <button
+          onClick={() => setIsRunning(!isRunning)}
+          className="text-2xl opacity-70 active:scale-95"
+        >
+          {isRunning ? "⏸" : "▶"}
+        </button>
+        </div>
       </div>
     </div>
   );
