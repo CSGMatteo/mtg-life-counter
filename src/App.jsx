@@ -41,6 +41,26 @@ export default function App() {
 
   }, [isRunning, isOvertime]);
 
+  useEffect (() => {
+    let wakeLock = null;
+
+    const enableWakeLock = async () => {
+      try {
+        wakeLock = await navigator.wakeLock.request("screen");
+      } catch (err) {
+        console.log("Wake lock failed", err);
+      }
+    };
+
+    enableWakeLock();
+
+    return () => {
+      if (wakeLock) {
+        wakeLock.release();
+      }
+    };
+  }, []);
+
   const formatTime = (totalSeconds) => {
 
     const minutes = String(

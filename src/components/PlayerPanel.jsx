@@ -74,6 +74,9 @@ export default function PlayerPanel({
 
   return (
     <div
+      style={{
+        WebkitTouchCallout: "none",
+      }}
       className={`
         relative
         ${color}
