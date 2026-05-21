@@ -76,6 +76,9 @@ export default function PlayerPanel({
     <div
       style={{
         WebkitTouchCallout: "none",
+        WebkitUserSelect: "none",
+        userSelect: "none",
+        touchAction: "manipulation",
       }}
       className={`
         relative
@@ -93,9 +96,17 @@ export default function PlayerPanel({
 
       {/* Minus */}
       <button
+        draggable="false"
         onPointerDown={() => handlePointerDown(-1)}
         onPointerUp={() => handlePointerUp(-1)}
         onPointerLeave={stopHold}
+        onPointerCancel={stopHold}
+        onContextMenu={(e) => e.preventDefault()}
+        style={{
+          WebkitTouchCallout: "none",
+          WebkitUserSelect: "none",
+          userSelect: "none",
+        }}
         className="absolute left-0 top-0 h-full w-1/2"
       >
         <span className="absolute left-6 top-1/2 -translate-y-1/2 text-4xl opacity-30">
@@ -105,9 +116,17 @@ export default function PlayerPanel({
 
       {/* Plus */}
       <button
-        onPointerDown={() => handlePointerDown(1)}
-        onPointerUp={() => handlePointerUp(1)}
+        draggable="false"
+        onPointerDown={() => handlePointerDown(-1)}
+        onPointerUp={() => handlePointerUp(-1)}
         onPointerLeave={stopHold}
+        onPointerCancel={stopHold}
+        onContextMenu={(e) => e.preventDefault()}
+        style={{
+          WebkitTouchCallout: "none",
+          WebkitUserSelect: "none",
+          userSelect: "none",
+        }}
         className="absolute right-0 top-0 h-full w-1/2"
       >
         <span className="absolute right-6 top-1/2 -translate-y-1/2 text-4xl opacity-30">

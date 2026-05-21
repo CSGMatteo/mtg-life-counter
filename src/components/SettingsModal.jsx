@@ -1,67 +1,67 @@
-export default function SettingsModal({
-  showSettings,
-  setShowSettings,
-}) {
+  export default function SettingsModal({
+    showSettings,
+    setShowSettings,
+  }) {
 
-  if (!showSettings) return null;
+    if (!showSettings) return null;
 
-  return (
-
-    <div
-      className="
-        absolute
-        inset-0
-        z-40
-        flex
-        items-center
-        justify-center
-        bg-black/60
-        backdrop-blur-sm
-      "
-    >
+    return (
 
       <div
         className="
-          w-[90%]
-          max-w-md
-          rounded-3xl
-          bg-zinc-900
-          p-6
-          text-white
-          shadow-2xl
+          absolute
+          inset-0
+          z-40
+          flex
+          items-center
+          justify-center
+          bg-black/60
+          backdrop-blur-sm
         "
       >
 
-        <div className="mb-6 flex items-center justify-between">
+        <div
+          className="
+            w-[90%]
+            max-w-md
+            rounded-3xl
+            bg-zinc-900
+            p-6
+            text-white
+            shadow-2xl
+          "
+        >
 
-          <h1 className="text-2xl font-bold">
-            Settings
-          </h1>
+          <div className="mb-6 flex items-center justify-between">
 
-          <button
-            onClick={() => setShowSettings(false)}
-            className="text-2xl opacity-70"
-          >
-            ✕
-          </button>
+            <h1 className="text-2xl font-bold">
+              Settings
+            </h1>
 
-        </div>
+            <button
+              onClick={() => setShowSettings(false)}
+              className="text-2xl opacity-70"
+            >
+              ✕
+            </button>
 
-        <div className="space-y-4">
-
-          <div className="rounded-xl bg-zinc-800 p-4">
-            Starting Life: 40
           </div>
 
-          <div className="rounded-xl bg-zinc-800 p-4">
-            Round Timer: 90 Minutes
+          <div className="space-y-4">
+
+            <div className="rounded-xl bg-zinc-800 p-4">
+              Starting Life: 40
+            </div>
+
+            <div className="rounded-xl bg-zinc-800 p-4">
+              Round Timer: 90 Minutes
+            </div>
+
           </div>
 
         </div>
 
       </div>
 
-    </div>
-
-  );
-}
+    );
+  }
