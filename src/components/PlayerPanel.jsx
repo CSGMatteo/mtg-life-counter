@@ -117,8 +117,8 @@ export default function PlayerPanel({
       {/* Plus */}
       <button
         draggable="false"
-        onPointerDown={() => handlePointerDown(-1)}
-        onPointerUp={() => handlePointerUp(-1)}
+        onPointerDown={() => handlePointerDown(+1)}
+        onPointerUp={() => handlePointerUp(+1)}
         onPointerLeave={stopHold}
         onPointerCancel={stopHold}
         onContextMenu={(e) => e.preventDefault()}
